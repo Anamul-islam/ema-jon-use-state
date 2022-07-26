@@ -1,0 +1,12 @@
+ ul li  {
+    list-style-type: none;
+    margin-right: 40px;
+    padding: 20px 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+ }
+ 
+ ul{
+    background-color: black;
+ }

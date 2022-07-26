@@ -1,23 +1,53 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Header from './component/Header/Header';
+import Shop from './component/Shop/Shop';
+
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
+import Revew from './component/Revew/Revew';
+import { useState } from 'react';
+ 
+ 
+
+ 
+
 
 function App() {
+
+ const [cart,setCart] = useState([])
+
+  const  addtoCart = (item) =>{
+      const newCart = [...cart , item];
+      setCart(newCart);
+  }
+
+ const handleChange = (elm,d) =>{
+      const ind = cart.indexOf(elm);
+     const arr = cart;
+      arr[ind].quantity += d;
+
+       if (arr[ind].quantity === 0) arr[ind].quantity = 1;
+      setCart([...arr]);
+
+ 
+      
+ }
+  
+  
+ 
+   
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header cart = {cart}/>
+       
+        <Routes>
+          <Route path="/" element={<Shop addtoCart={addtoCart} />} />
+          <Route path="/Revew" element={<Revew cart = {cart} handleChange = {handleChange} setCart = {setCart}/>} />
+        </Routes>
+    
     </div>
   );
 }
